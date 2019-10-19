@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  web:
+    image: node:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    restart: always
+
+  db:
+    image: mongo:latest
+    ports:
+      - 27017:27017    
+    volumes:
+      - ./database/mongod.conf:/etc/mongod.conf
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+
+  selenium:
+    image: selenium/standalone-chrome-debug:latest
+    ports:
+      - 4444:4444
+    volumes:
+      - ./:/var/www
+      - ./dev/shm:/dev/shm
+    restart: always
