@@ -1,0 +1,25 @@
+<div class="row justify-content-md-center">
+    <div class="col col-md-16">
+        <div class="d-flex justify-content-between">
+            <h3 class="mb-4">
+                Usuários
+                <small class="text-muted">
+                    Listagem
+                </small>
+            </h3>
+        </div>
+        <div *ngIf="message" class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        <div class="card">
+            <app-user-list 
+                [users] = "pageUsers"
+                (update) = "update($event)"
+                (remove) = "remove($event)">
+            </app-user-list>
+            <div class="card-footer text-right" *ngIf="(pageUsers | async)?.length as total">
+                {{ total }} de usuários encontrados
+            </div>
+        </div>
+    </div>
+</div>

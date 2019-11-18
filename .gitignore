@@ -3,3 +3,7 @@ node_modules
 
 # Remove .env
 .env
+
+# Remove power point files
+*.pptx
+*.pptx#
